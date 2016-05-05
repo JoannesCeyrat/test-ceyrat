@@ -12,7 +12,13 @@ body {
 
 .contour {
 	border: 1px solid #000;
+	transition: all 400ms;
 	
+}
+.contour:hover {
+	background-color: #333;
+	color:#fff;
+	transition: all 400ms;
 }
 
 .margeTop {
