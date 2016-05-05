@@ -122,6 +122,11 @@
 			}
 		}
 
+		/*****
+		* affiche les articles avec un fadeIN
+		* le temps d'enchainement est plus rapide au fur à mesure.
+		* comme on a 5 articles on verfie pas si on n'a pas un chiffre négatif comme param du setTimeout... 
+		***/
 		function display_last_five(index, max) {
 			console.log($("#articles").children("#art"+index));
 			$("#articles").children("#art"+index).css("opacity", 1);
