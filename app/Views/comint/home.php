@@ -35,7 +35,14 @@
 			</div>
 	</div>
 
-
+	<!-- row page 2 de l'exo -->
+	<div class="container ">
+			<div class="row">
+				<div class="col-xs-12">
+					<p class="float-droit margeTop"><a href="./page2" title="Aller à la page 2 du test" >Page 2 >> </a></p>
+				</div>
+			</div>
+	</div>
 
 
 		<script type="text/javascript">

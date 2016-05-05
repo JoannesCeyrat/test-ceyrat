@@ -58,3 +58,8 @@ body {
 	color:#929292;
 	padding-top: 0.5rem;
 }
+
+.float-droit {
+	display: inline-block;
+	float: right;
+}
