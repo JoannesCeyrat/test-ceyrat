@@ -1,83 +1,130 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-
-	<meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-
-	<link media="all" type="texx/css" rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<script src="http://localhost<?= $this->assetUrl('/scripts/jquery.flexslider-min.js') ?>"></script>
-
-	<title><?= $title ?></title>
-
-</head>
-
-	<body>
-
-	hello from home.
-		
+<?php $this->layout('comint/layout', ['title' => $title, 'slider'=>true]) ?>
 
 
-	<script type="text/javascript">
+<?php $this->start('main_content') ?>
+	<!-- row fluid slider --> 
+		<div class="container-fluid " style="overflow: hidden;">
+			<div class="row">
 
-	$(document).ready( function() {
+				<div class="col-xs-12   padTop">
+					<div class="flexslider">
+					  <ul class="slides">
+					  	<?php
+					  	for($i=0; $i<count($tab_img_slider); $i++) {
+					  	 	echo "
+					  		<li>
+					      		<img src=\"http://localhost".$this->assetUrl('/images-slider/'.$tab_img_slider[$i])."\" alt=\"Slider image ".($i+1)."/".count($tab_img_slider)."\"/>
+					    	</li>
+					  		";
+					  	 } 
+					  	?>					   
+					  </ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		// aller chercher le json
-		$.getJSON( "./jsonHome", five_last );
-	});
+
+	<!-- row articles -->
+	<div class="container bgBlanc">
+			<div class="row">
+				<div class="col-xs-12"><h1>Nos derniers articles</h1></div>
+			</div>
+			<div class="row" id="articles">
+
+			</div>
+	</div>
 
 
 
-	/**
-	* trie et retourne les 5 derniers articles en date
-	*/
-	function five_last (json_resp) {
 
-		var articles = [];
-		var lasts_articles=[];
+		<script type="text/javascript">
 
-		  $.each( json_resp, function( key, val ) {
-		    articles[key] = val;
-		  });
-	 
-		
-		articles.sort( function(a,b) {
+		$(document).ready( function() {
 
-			if (a.date_add < b.date_add) { 
-				return 1;
-			}
-			else if ( a.date_add > b.date_add ) {
-				return -1;
-			}
-			else {
-				return 0;
-			}
-			
+			// aller chercher le json
+			$.getJSON( "./jsonHome", five_last );
+
+			// jouer slider
+			$('.flexslider').flexslider({
+			    animation: "slide"
+			});
 		});
 
 
-		lasts_articles = articles.slice(0, 5 );
-		
-		console.log(lasts_articles, 0);
-		//console.log(json_resp[0].date_add<json_resp[1].date_add);
 
-	}
+		/**
+		* trie et retourne les 5 derniers articles en date
+		*/
+		function five_last (json_resp) {
+
+			var articles = [];
+			var lasts_articles=[];
+
+			  $.each( json_resp, function( key, val ) {
+			    articles[key] = val;
+			  });
+		 
+			
+			articles.sort( function(a,b) {
+
+				if (a.date_add < b.date_add) { 
+					return 1;
+				}
+				else if ( a.date_add > b.date_add ) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+				
+			});
 
 
-	/*****
-	* ajoute au dom les articles
-	* typiquement ici angular ferait le job avec sa boucle initialisée avec latsts_articles.
-	***/
-	function display_last_five(lasts_articles, added) {
+			lasts_articles = articles.slice(0, 5 );
+			
+			add_last_five(lasts_articles,0);
+			//console.log(json_resp[0].date_add<json_resp[1].date_add);
 
-	}
+		}
 
-		
-	</script>								
 
-	</body>
-</html>
+		/*****
+		* ajoute au dom les articles
+		* typiquement ici angular ferait le job avec sa boucle initialisée avec latsts_articles.
+		***/
+		function add_last_five(lasts_articles, index) {
+
+			var m = moment(lasts_articles[index].date_add);
+			var df = m.format("dddd")+"<br><span class=\"jour\">"+m.format("DD")+" "+m.format("MMM")+"</span><br><span class=\"an\">"+m.format("YYYY")+"</span>";
+			var d="<div class=\"col-xs-12 cache\" id=\"art"+index+"\"> \
+					<div class=\"col-xs-12 contour margeTop\" > \
+						<div class=\"col-xs-4 col-md-2\"><div class=\"dateFormat\">"+ df +"</div><p class=\"hh\">"+m.format("HH")+"h"+m.format("mm")+"</p></div>\
+						<div class=\"col-xs-8 col-md-10\"><h3>"+lasts_articles[index].title+"</h3><h5>"+lasts_articles[index].author+"</h5><p>"+lasts_articles[index].content+"</p></div>\
+					</div>\
+				</div>";
+			
+			$("#articles").append(d);
+
+			if( index<(lasts_articles.length-1) ) {
+				index++;
+				add_last_five(lasts_articles, index);
+			}
+			else {
+				display_last_five(0,index);
+			}
+		}
+
+		function display_last_five(index, max) {
+			console.log($("#articles").children("#art"+index));
+			$("#articles").children("#art"+index).css("opacity", 1);
+			index++;
+			if (index <=max) {
+				setTimeout( function() {display_last_five(index, max);}, (800-index*100));
+			}
+		}
+			
+		</script>								
+		}
+
+<?php $this->stop('main_content') ?>

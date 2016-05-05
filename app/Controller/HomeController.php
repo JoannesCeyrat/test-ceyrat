@@ -42,7 +42,8 @@ class HomeController extends Controller
 	*/
 	public function home()
 	{
-		$this->show('comint/home', ['title' => 'Home de Joannes CEYRAT']);
+		$tab_img_slider = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+		$this->show('comint/home', ['title' => 'Home de Joannes CEYRAT', "tab_img_slider"=>$tab_img_slider]);
 	}
 
 }

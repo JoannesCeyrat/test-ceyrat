@@ -1,0 +1,54 @@
+body {
+	background-color: #f9f9f9;
+}
+
+.bgBlanc {
+	background-color: #fff;
+}
+
+.padTop {
+	padding-top: 15px;
+}
+
+.contour {
+	border: 1px solid #000;
+	
+}
+
+.margeTop {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.cache {
+	opacity: 0;
+}
+
+.cache {
+  transition: opacity 1000ms;
+}
+
+.dateFormat {
+	color: #f49103;
+	font-weight:bold;
+	background-color: #f9f9f9;
+	min-height: 10rem;
+	text-align: center;
+	padding-top: 1rem;
+}
+
+.jour {
+	font-size:2rem;
+}
+
+.an {
+	font-size:2.2rem;
+}
+
+.hh {
+	min-width: 100%;
+	text-align: center;
+	font-size: 1.0rem;
+	color:#929292;
+	padding-top: 0.5rem;
+}
