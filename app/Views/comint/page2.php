@@ -41,7 +41,7 @@
 		$(document).ready( function() {
 
 			var cinq_articles;
-			var articles_displayed=10;
+			var articles_displayed=0;
 
 			function recursive_display(index, max, G) {
 				G.display_element("articles", "art"+index);
@@ -57,11 +57,8 @@
 				}
 			}
 
-			// aller chercher le json
-			// ->  option enchainement par functions
-			// -> $.getJSON( "./jsonHome", five_last );
+			
 
-			// ->option gestionnaire objet 
 			function fetch_json() {
 
 				$.getJSON( ("../jsonFromTableArticles/"+articles_displayed), function(data) {
@@ -72,8 +69,6 @@
 
 					G.tronque_content(articles, 'content', 150);
 
-					console.log(articles);
-					//cinq_articles = articles.slice(articles_displayed,5);
 
 					for (i=0; i<articles.length; i++) {
 						G.add_to_element("articles", articles[i]);
@@ -88,17 +83,17 @@
 			fetch_json()
 			
 			/*** inview ***/
-					$('#trigger').on('inview', function(event, isInView) {
-						  if (isInView) {
-						    // element is now visible in the viewport
-						    console.log("vue");
-						    fetch_json();
+			$('#trigger').on('inview', function(event, isInView) {
+				  if (isInView) {
+				    // element is now visible in the viewport
+				    console.log("vue");
+				    fetch_json();
 
-						  } else {
-						    // element has gone out of viewport
-						    // do nothing
-						  }
-						});
+				  } else {
+				    // element has gone out of viewport
+				    // do nothing
+				  }
+				});
 			
 
 
