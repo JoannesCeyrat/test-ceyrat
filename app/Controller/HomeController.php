@@ -29,16 +29,34 @@ class HomeController extends Controller
 		}
 
 		$this->showJson( json_decode($row["json"]) ); 
+
+	}
+
+
+	/*
+	* methode appelée par une demande de json from table articles
+	* 
+	* @param  void
+    * @return json
+	*/
+	public function getJsonFromTableArticles($from)
+	{
+		
+		//$json_arr = (new JsonsModel)->get_all();
+		$json_arr = (new JsonsModel)->get_five($from);
+
+
+		$this->showJson( $json_arr ); 
+
 		
 	}
 
 
-
 	/*
-	* methode appelée pour afficher la home page
+	* methode appelée pour afficher les vues
 	* 
 	* @param  void
-    * @return affichage de la vue comint/home
+    * @return affichage des vues
 	*/
 	public function home()
 	{

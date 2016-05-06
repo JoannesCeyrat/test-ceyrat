@@ -87,4 +87,15 @@ var Gestionnaire_articles = function() {
 		$( ("#"+idMother) ).children( ("#"+idChild) ).css("opacity", 1);
 	}
 
+	/****************
+	* tronque tous les chaines de @param clef à @param longueur de @param arr
+	* @ return void
+	*/
+	this.tronque_content = function(arr, clef, longueur)
+	{
+		for(i=0; i<arr.length; i++) {
+			arr[i][clef] = arr[i][clef] .substring(0,(longueur-1));
+		}
+	}
+
 };
