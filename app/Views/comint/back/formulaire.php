@@ -4,7 +4,7 @@
 <?php $this->start('main_content') ?>
 	
 	<!-- row fluid slider --> 
-		<div class="container" style="overflow: hidden;">
+		<div class="container">
 			<div class="row">
 
 				<div class="col-xs-12   padTop">					

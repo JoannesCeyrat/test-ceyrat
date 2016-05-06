@@ -20,6 +20,7 @@
 	<link media="all" type="text/css" rel="stylesheet" href="./css/app.css">
 
 	<script src="./scripts/moment-min.js"></script>
+	<script src="./scripts/jquery.inview.min.js"></script>
 
 	<script src="./scripts/gestionnaire_articles.js"></script>
 

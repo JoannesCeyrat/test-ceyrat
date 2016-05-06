@@ -39,7 +39,7 @@ class BackController extends Controller
 	   	$mArticlesModel = new ArticlesModel;
 	   	foreach ($json_arr as $obj) {
 	   		$row = $mArticlesModel->add_article($obj);
-	   		
+
 	   		if ( empty($row) ){
 	   			$this->show('comint/back/no_file_upload', ['title' => 'Erreur insert json', 'message'=>'Erreur d\'insertion : '.implode(",", $obj) ]);
 	   		}
@@ -47,7 +47,6 @@ class BackController extends Controller
 
 		$this->show('comint/back/no_file_upload', ['title' => 'OK import json', 'message'=>'Le fichier uploadé est correctement importé' ]);	
 		
-
 	}
 
 

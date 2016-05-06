@@ -46,4 +46,11 @@ class HomeController extends Controller
 		$this->show('comint/home', ['title' => 'Home de Joannes CEYRAT', "tab_img_slider"=>$tab_img_slider]);
 	}
 
+
+
+
+	public function page2()
+	{
+		$this->show('comint/page2', ['title' => 'Page 2 de Joannes CEYRAT', "tab_img_slider"=>false]);
+	}
 }
