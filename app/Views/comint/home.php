@@ -13,7 +13,7 @@
 					  	for($i=0; $i<count($tab_img_slider); $i++) {
 					  	 	echo "
 					  		<li>
-					      		<img src=\"http://localhost".$this->assetUrl('/images-slider/'.$tab_img_slider[$i])."\" alt=\"Slider image ".($i+1)."/".count($tab_img_slider)."\"/>
+					      		<img src=\"./images-slider/".$tab_img_slider[$i]."\" alt=\"Slider image ".($i+1)."/".count($tab_img_slider)."\"/>
 					    	</li>
 					  		";
 					  	 } 
@@ -50,7 +50,31 @@
 		$(document).ready( function() {
 
 			// aller chercher le json
-			$.getJSON( "./jsonHome", five_last );
+			// ->  option enchainement par functions
+			// -> $.getJSON( "./jsonHome", five_last );
+
+			// ->option gestionnaire objet 
+			$.getJSON( "./jsonHome", function(data) {
+
+				function recursive_display(index, max) {
+					G.display_element("articles", "art"+index);
+					index++;
+					if (index <=max) {
+						setTimeout( function() {recursive_display(index, max);}, (600-index*100));
+					}
+				}
+
+				var G = new Gestionnaire_articles();
+				var articles = G.get_all(data);
+				var last_five = G.get_fresh_five(articles);
+				for (i=0; i<last_five.length; i++) {
+					G.add_to_element("articles", last_five[i]);
+				}
+
+				recursive_display( 0, last_five.length-1 );
+
+			});
+
 
 			// jouer slider
 			$('.flexslider').flexslider({
@@ -90,7 +114,7 @@
 
 			lasts_articles = articles.slice(0, 5 );
 			
-			add_last_five(lasts_articles,0);
+			add_article(lasts_articles,0);
 			//console.log(json_resp[0].date_add<json_resp[1].date_add);
 
 		}
@@ -100,7 +124,7 @@
 		* ajoute au dom les articles
 		* typiquement ici angular ferait le job avec sa boucle initialisée avec latsts_articles.
 		***/
-		function add_last_five(lasts_articles, index) {
+		function add_article(lasts_articles, index) {
 
 			var m = moment(lasts_articles[index].date_add);
 			var df = m.format("dddd")+"<br><span class=\"jour\">"+m.format("DD")+" "+m.format("MMM")+"</span><br><span class=\"an\">"+m.format("YYYY")+"</span>";
@@ -115,10 +139,10 @@
 
 			if( index<(lasts_articles.length-1) ) {
 				index++;
-				add_last_five(lasts_articles, index);
+				add_article(lasts_articles, index);
 			}
 			else {
-				display_last_five(0,index);
+				display_article(0,index);
 			}
 		}
 
@@ -127,12 +151,12 @@
 		* le temps d'enchainement est plus rapide au fur à mesure.
 		* comme on a 5 articles on verfie pas si on n'a pas un chiffre négatif comme param du setTimeout... 
 		***/
-		function display_last_five(index, max) {
-			console.log($("#articles").children("#art"+index));
+		function display_article(index, max) {
+			//console.log($("#articles").children("#art"+index));
 			$("#articles").children("#art"+index).css("opacity", 1);
 			index++;
 			if (index <=max) {
-				setTimeout( function() {display_last_five(index, max);}, (800-index*100));
+				setTimeout( function() {display_article(index, max);}, (800-index*100));
 			}
 		}
 			

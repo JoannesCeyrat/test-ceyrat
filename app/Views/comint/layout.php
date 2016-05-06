@@ -10,14 +10,18 @@
 
 	<link media="all" type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+	<base href="http://<?= $_SERVER["HTTP_HOST"].$this->assetUrl(''); ?>" > 
+
 	<?php if ($slider): ?>
-		<link media="all" type="text/css" rel="stylesheet" href="http://localhost<?= $this->assetUrl('/css/flexslider.css') ?>">
-		<script src="http://localhost<?= $this->assetUrl('/scripts/jquery.flexslider-min.js') ?>"></script>
+		<link media="all" type="text/css" rel="stylesheet" href="./css/flexslider.css">
+		<script src="./scripts/jquery.flexslider-min.js"></script>
 	<?php endif ?>
 
-	<link media="all" type="text/css" rel="stylesheet" href="http://localhost<?= $this->assetUrl('/css/app.css') ?>">
+	<link media="all" type="text/css" rel="stylesheet" href="./css/app.css">
 
-	<script src="http://localhost<?= $this->assetUrl('/scripts/moment-min.js') ?>"></script>
+	<script src="./scripts/moment-min.js"></script>
+
+	<script src="./scripts/gestionnaire_articles.js"></script>
 
 	<title><?= $this->e($title) ?></title>
 
