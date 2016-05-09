@@ -68,6 +68,23 @@ class ArticlesModel extends \W\Model\Model
 
 
 	/*
+	* @param offset  
+	* @return array of config/limit de la table articles à partir offset @param $from
+	*/
+	public  function get_paginated_number($from)
+	{
+		$this->setTable("articles");
+		$app = getApp();
+		$limit = $app->getConfig('limit');
+
+		$data = $this->findAll("id", "ASC", intval($limit), intval($from));
+
+		return $data;
+	}
+
+	
+
+	/*
 	* 
 	* @return json string   {id : titles } of all rows de la table articles
 	*/
