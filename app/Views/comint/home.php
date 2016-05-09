@@ -39,7 +39,7 @@
 	<footer class="container ">
 			<div class="row">
 				<div class="col-xs-12">
-					<p class="float-droit margeTop"><a href="../page2" title="Aller à la page 2 du test" >Page 2 du test >> </a></p>
+					<p class="float-droit margeTop"><a href="../liste-articles" title="Voir tous les articles" >Liste des articles >> </a></p>
 				</div>
 			</div>
 	</footer>

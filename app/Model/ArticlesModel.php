@@ -75,14 +75,39 @@ class ArticlesModel extends \W\Model\Model
 	public  function get_titles()
 	{
 		$data = $this->get_all();
+
+		/*s'il n'y a pas d'articles, 
+		* @ return []
+		*/
+		if (empty($data)) {
+			return "[]";
+		}
+
+
 		$str_json_titles="[";
 		foreach ($data as $row) {
 			//array_push($arr_titles, ["id"=>$row["id"], "name"=>$row["title"]]);
 			$str_json_titles.="{id:".$row["id"].", title:\"".$row["title"]."\"},";
 		}
+		
 		$str_json_titles=substr($str_json_titles, 0, -1);
 		$str_json_titles.="]";
 		return $str_json_titles;
 	}
+
+
+	/*
+	* @param index from of LIMIT
+	* @return array of all $row de la table articles
+	*/
+	public  function get_article($id)
+	{
+		$this->setTable("articles");
+
+		$data = $this->find($id);
+
+		return $data;
+	}
+
 
 }

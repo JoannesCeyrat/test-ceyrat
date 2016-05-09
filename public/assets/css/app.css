@@ -93,3 +93,19 @@ body {
 .noir {
 	color:#444;
 }
+
+footer {
+	background-color: rgb(231, 231, 231);
+	min-height: 5rem;
+	padding: 2rem 0;
+	margin-top: 3rem;
+}
+
+.content {
+	padding: 3rem 1rem;
+}
+
+.signature  {
+	padding: 0 1rem 3rem 1rem;
+	color:#f49103;
+}

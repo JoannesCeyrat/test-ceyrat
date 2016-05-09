@@ -2,10 +2,12 @@
 	
 	$w_routes = array(
 		//front
-		['GET', '/', 'Home#home', 'default_home'],
+		['GET', '/', 'Home#home', 'home'],
 		['GET', '/jsonHome', 'Home#getJson', 'jsonHome'],
-		['GET', '/page2', 'Home#page2', 'page2'],
+		['GET', '/liste-articles', 'Home#liste_articles', 'liste'],
+		['GET', '/article/[:id]', 'Home#article', 'article'],
 		['GET', '/jsonFromTableArticles/[:from]', 'Home#getJsonFromTableArticles', 'jsonFromTableArticles'],
+
 
 		// back
 		['GET', '/maintenance', 'Back#display_form', 'back'],

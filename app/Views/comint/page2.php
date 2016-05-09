@@ -11,7 +11,7 @@
 					<div class="col-xs-12 col-sm-6">				
 						<h1>Articles de la base</h1>
 					</div>
-					<div class="col-xs-12 col-sm-6">	
+					<div class="col-xs-12 col-sm-6 ">	
 						<h6>Recherche par titre</h6>
 						<div id="bloodhound">				
 							<input class="typeahead" type="text" placeholder="Titre de l'article">
@@ -28,6 +28,10 @@
 	<!-- row articles--> 
 		<section class="container bgBlanc" style="margin-top: 10rem;">
 				<div class="row" id="articles">
+					<?php if ($arr_json=="[]") : ?>
+						La base de donnée ne contient pas d'articles.<br>
+						Vous pouvez en ajouter <a href="../maintenance" title="ajouter des articles">ici</a>
+					<?php endif ?>
 
 				</div>
 
@@ -77,7 +81,15 @@
 
 
 			$('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-			  console.log('Selection: ' + getID(suggestion) );
+			  //console.log('Selection: ' + getID(suggestion) );
+			  var id = getID(suggestion);
+			  if (id==0) {
+			  	alert("Article non disponible.");
+			  }
+			  else {
+			  	location.href="../article/"+id;
+			  }
+			  
 			});
 
 			function getID(titre) {
@@ -137,7 +149,7 @@
 			}
 
 			// lancement initial de fetch_json
-			fetch_json()
+			fetch_json();
 			
 
 

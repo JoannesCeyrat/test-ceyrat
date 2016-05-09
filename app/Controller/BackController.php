@@ -45,7 +45,7 @@ class BackController extends Controller
 	   		}
 	   	}
 
-		$this->show('comint/back/no_file_upload', ['title' => 'OK import json', 'message'=>'Le fichier uploadé est correctement importé' ]);	
+		$this->show('comint/back/no_file_upload', ['title' => 'OK import json', 'message'=>'Le fichier uploadé est correctement importé.<br><br><a href="../liste-articles" title="Voir tous les articles">Voir les articles</a>' ]);	
 		
 	}
 

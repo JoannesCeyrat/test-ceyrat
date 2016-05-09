@@ -46,7 +46,6 @@ class HomeController extends Controller
 		//$json_arr = (new JsonsModel)->get_all();
 		$json_arr = (new ArticlesModel)->get_five($from);
 
-
 		$this->showJson( $json_arr ); 
 
 		
@@ -62,17 +61,47 @@ class HomeController extends Controller
 	public function home()
 	{
 		$tab_img_slider = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
-		$this->show('comint/home', ['title' => 'Home de Joannes CEYRAT', "tab_img_slider"=>$tab_img_slider]);
+		
+		$this->show('comint/home', ['title' => 'Home page / Joannes CEYRAT', "tab_img_slider"=>$tab_img_slider]);
 	}
 
 
 
 
-	public function page2()
+	public function liste_articles()
 	{
 		$arr_json = (new ArticlesModel)->get_titles();
-		$this->show('comint/page2', ['title' => 'Page 2 de Joannes CEYRAT',  "arr_json"=>$arr_json, "page2"=>true]);
+		
+		$this->show('comint/page2', ['title' => 'Liste des articles',  "arr_json"=>$arr_json, "page2"=>true]);
 	}
+
+
+	public function article($id)
+	{
+		date_default_timezone_set("Europe/Paris");
+		setlocale(LC_TIME, 'fr_FR');
+		
+		$arr_json = (new ArticlesModel)->get_titles();		
+		$row = (new ArticlesModel)->get_article($id);
+
+		if (empty($row)) {
+			$this->redirectToRoute('home');
+		}
+
+		$d = strtotime($row["date_add"]);
+
+		$this->show('comint/article', [
+						'title' => ($row["title"].' &copy; '.$row["author"]),  
+						"arr_json"=>$arr_json, 
+						"page2"=>true, 
+						"author"=>$row["author"], 
+						"content"=>$row["content"], 
+						"jour"=>strtolower(strftime('%A %d %B %Y ', $d)),
+						"heure"=> strftime('%H:%M', $d),
+						"titre"=>$row["title"]
+		]);
+	}
+
 
 
 
