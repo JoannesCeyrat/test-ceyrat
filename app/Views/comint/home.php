@@ -50,10 +50,6 @@
 		$(document).ready( function() {
 
 			// aller chercher le json
-			// ->  option enchainement par functions
-			// -> $.getJSON( "./jsonHome", five_last );
-
-			// ->option gestionnaire objet 
 			$.getJSON( "./jsonHome", function(data) {
 
 				function recursive_display(index, max) {
@@ -83,82 +79,6 @@
 		});
 
 
-
-		/**
-		* trie et retourne les 5 derniers articles en date
-		*/
-		function five_last (json_resp) {
-
-			var articles = [];
-			var lasts_articles=[];
-
-			  $.each( json_resp, function( key, val ) {
-			    articles[key] = val;
-			  });
-		 
-			
-			articles.sort( function(a,b) {
-
-				if (a.date_add < b.date_add) { 
-					return 1;
-				}
-				else if ( a.date_add > b.date_add ) {
-					return -1;
-				}
-				else {
-					return 0;
-				}
-				
-			});
-
-
-			lasts_articles = articles.slice(0, 5 );
-			
-			add_article(lasts_articles,0);
-			//console.log(json_resp[0].date_add<json_resp[1].date_add);
-
-		}
-
-
-		/*****
-		* ajoute au dom les articles
-		* typiquement ici angular ferait le job avec sa boucle initialisée avec latsts_articles.
-		***/
-		function add_article(lasts_articles, index) {
-
-			var m = moment(lasts_articles[index].date_add);
-			var df = m.format("dddd")+"<br><span class=\"jour\">"+m.format("DD")+" "+m.format("MMM")+"</span><br><span class=\"an\">"+m.format("YYYY")+"</span>";
-			var d="<div class=\"col-xs-12 cache\" id=\"art"+index+"\"> \
-					<div class=\"col-xs-12 contour margeTop\" > \
-						<div class=\"col-xs-4 col-md-2\"><div class=\"dateFormat\">"+ df +"</div><p class=\"hh\">"+m.format("HH")+"h"+m.format("mm")+"</p></div>\
-						<div class=\"col-xs-8 col-md-10\"><h3>"+lasts_articles[index].title+"</h3><h5>"+lasts_articles[index].author+"</h5><p>"+lasts_articles[index].content+"</p></div>\
-					</div>\
-				</div>";
-			
-			$("#articles").append(d);
-
-			if( index<(lasts_articles.length-1) ) {
-				index++;
-				add_article(lasts_articles, index);
-			}
-			else {
-				display_article(0,index);
-			}
-		}
-
-		/*****
-		* affiche les articles avec un fadeIN
-		* le temps d'enchainement est plus rapide au fur à mesure.
-		* comme on a 5 articles on verfie pas si on n'a pas un chiffre négatif comme param du setTimeout... 
-		***/
-		function display_article(index, max) {
-			//console.log($("#articles").children("#art"+index));
-			$("#articles").children("#art"+index).css("opacity", 1);
-			index++;
-			if (index <=max) {
-				setTimeout( function() {display_article(index, max);}, (800-index*100));
-			}
-		}
 			
 		</script>								
 		}

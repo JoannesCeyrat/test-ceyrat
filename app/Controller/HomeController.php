@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
 
 	/*
-	* methode appelée par une demand de json
+	* methode appelée par une demande de json
 	* 
 	* @param  void
     * @return json

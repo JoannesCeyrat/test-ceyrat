@@ -1,9 +1,8 @@
-<?php /* app/Model/JsonsModel.php */
+<?php /* app/Model/ArticlesModel.php */
 namespace Model;
 
 class ArticlesModel extends \W\Model\Model 
 {
-	//Récupère les commentaires associés à un article
 
 	public  function add_article(array $arr)
 	{
@@ -21,7 +20,7 @@ class ArticlesModel extends \W\Model\Model
 
 
 	/*
-	/* @param array => objet json
+	/* @param array =>  ligne du json importé convertie en array par jsondecode
 	/* @return array => clean array for insertion in database
 	*/
 	public function verif_article(array $arr)
@@ -55,8 +54,8 @@ class ArticlesModel extends \W\Model\Model
 
 
 	/*
-	* @param index from of LIMIT
-	* @return array of all $row de la table articles
+	* @param offset  
+	* @return array of 5 rows de la table articles à partir offset @param $from
 	*/
 	public  function get_five($from)
 	{
@@ -70,7 +69,7 @@ class ArticlesModel extends \W\Model\Model
 
 	/*
 	* 
-	* @return string of json of all id : titles de la table articles
+	* @return json string   {id : titles } of all rows de la table articles
 	*/
 	public  function get_titles()
 	{
@@ -97,8 +96,8 @@ class ArticlesModel extends \W\Model\Model
 
 
 	/*
-	* @param index from of LIMIT
-	* @return array of all $row de la table articles
+	* @param id 
+	* @return array of  1 row de la table articles dont l'id est @param $id
 	*/
 	public  function get_article($id)
 	{

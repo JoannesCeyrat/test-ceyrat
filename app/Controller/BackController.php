@@ -22,7 +22,10 @@ class BackController extends Controller
 	public function receive_form()
 	{
 		
-		// en cas erreur de recption fichier
+		/*
+		* en cas erreur 
+		* de reception fichier
+		*/
 		if ( !is_uploaded_file($_FILES['lejs']['tmp_name'])) {		   
 		   	 $this->show('comint/back/no_file_upload', ['title' => 'Erreur upload json', 'message'=>'Oups, je n\'ai pas reçu votre fichier' ]);  
 		} 
@@ -31,10 +34,14 @@ class BackController extends Controller
 		$fichier_content = file_get_contents($_FILES['lejs']['tmp_name']);
 		$json_arr = json_decode($fichier_content, true);
 
-		// erreur dans le format ou contenu
+		/*
+		* en cas erreur 
+		* dans le format ou contenu
+		*/
 	   	if ( empty($json_arr) ){
 	   		$this->show('comint/back/no_file_upload', ['title' => 'Erreur parse json', 'message'=>'Le fichier uploadé ne répond pas correctement au format json' ]);
 	   	}
+
 
 	   	$mArticlesModel = new ArticlesModel;
 	   	foreach ($json_arr as $obj) {

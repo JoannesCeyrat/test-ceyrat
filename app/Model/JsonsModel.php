@@ -6,7 +6,7 @@ class JsonsModel extends \W\Model\Model
 	
 	/*
 	* @param id de la table jsons
-	* @return array $row
+	* @return array of 1 row
 	*/
 	public  function findJson($id)
 	{
