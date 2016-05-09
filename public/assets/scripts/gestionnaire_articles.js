@@ -66,12 +66,14 @@ var Gestionnaire_articles = function() {
 	{
 		m = moment(obj.date_add);
 		df = m.format("dddd")+"<br><span class=\"jour\">"+m.format("DD")+" "+m.format("MMM")+"</span><br><span class=\"an\">"+m.format("YYYY")+"</span>";
-		d="<div class=\"col-xs-12 cache\" id=\"art"+this.indexAdded+"\"> \
-					<div class=\"col-xs-12 contour margeTop\" > \
-						<div class=\"col-xs-4 col-md-2\"><div class=\"dateFormat\">"+ df +"</div><p class=\"hh\">"+m.format("HH")+"h"+m.format("mm")+"</p></div>\
-						<div class=\"col-xs-8 col-md-10\"><h3>"+obj.title+"</h3><h5>"+obj.author+"</h5><p>"+obj.content+"</p></div>\
-					</div>\
-				</div>";
+		d="<article class=\"col-xs-12 cache\" id=\"art"+this.indexAdded+"\"> \
+				<a href=\"../article/"+obj.id+"\" title=\"lire l\'article "+obj.title+"\" class=\"noir\">\
+						<div class=\"col-xs-12 contour margeTop\" > \
+							<div class=\"col-xs-4 col-md-2\"><div class=\"dateFormat\">"+ df +"</div><p class=\"hh\">"+m.format("HH")+"h"+m.format("mm")+"</p></div>\
+							<div class=\"col-xs-8 col-md-10\"><h3>"+obj.title+"</h3><h5>"+obj.author+"</h5><p>"+obj.content+"</p></div>\
+						</div> \
+				</a> \
+			</article>";
 
 		$( ("#"+id) ).append(d);
 		this.indexAdded++;

@@ -12,7 +12,7 @@
 
 	<base href="http://<?= $_SERVER["HTTP_HOST"].$this->assetUrl(''); ?>" > 
 
-	<?php if ($slider): ?>
+	<?php if (!empty($slider)): ?>
 		<link media="all" type="text/css" rel="stylesheet" href="./css/flexslider.css">
 		<script src="./scripts/jquery.flexslider-min.js"></script>
 	<?php endif ?>
@@ -20,9 +20,21 @@
 	<link media="all" type="text/css" rel="stylesheet" href="./css/app.css">
 
 	<script src="./scripts/moment-min.js"></script>
-	<script src="./scripts/jquery.inview.min.js"></script>
+
+	<?php if (!empty($page2)): ?>
+		<script src="./scripts/jquery.inview.min.js"></script>
+		<script src="./scripts/typehead.0.11.1.min.js"></script>
+		<script src="./scripts/bloodhound.0.11.1.min.js"></script>
+		<link media="all" type="text/css" rel="stylesheet" href="./css/typehead.css">
+	<?php endif ?>
+
+
 
 	<script src="./scripts/gestionnaire_articles.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
 	<title><?= $this->e($title) ?></title>
 

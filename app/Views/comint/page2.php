@@ -1,44 +1,97 @@
-<?php $this->layout('comint/layout', ['title' => $title, 'slider'=>false]) ?>
+<?php $this->layout('comint/layout', ['title' => $title, 'page2'=>$page2]) ?>
 
 
 <?php $this->start('main_content') ?>
 	
 	<!-- row entete--> 
-		<div class="container"  >
+		<header class="container"  >
 			<div class="row">
 
 				<div class="col-xs-12 fixe" >	
-					<div class="col-xs-6">				
+					<div class="col-xs-12 col-sm-6">				
 						<h1>Articles de la base</h1>
 					</div>
-					<div class="col-xs-6">					
-						<p>moteur</p>
+					<div class="col-xs-12 col-sm-6">	
+						<h6>Recherche par titre</h6>
+						<div id="bloodhound">				
+							<input class="typeahead" type="text" placeholder="Titre de l'article">
+						</div>
 					</div>
 				</div>
 
 				
 
 			</div>
-		</div>
+		</header>
 
 
 	<!-- row articles--> 
-		<div class="container bgBlanc" style="margin-top: 10rem;">
+		<section class="container bgBlanc" style="margin-top: 10rem;">
 				<div class="row" id="articles">
 
 				</div>
 
 				<div id="trigger" class="trig"></div>
-		</div>
+		</section>
 
 
+		<footer class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p class="margeTop"><a href="../" title="Retour page accueil du test" ><< Accueil </a></p>
+				</div>
+			</div>
+		</footer>
 	
 
 		<script type="text/javascript">
 
-		
+		var titles=<?= $arr_json ?>;
 
 		$(document).ready( function() {
+
+			/***
+			* moteur de suggestions
+			****/
+			var titles_light =[];
+			for (i=0; i<titles.length; i++) {
+				titles_light.push(titles[i].title);
+			}
+
+			var titles_b = new Bloodhound({
+			  datumTokenizer: Bloodhound.tokenizers.whitespace,
+			  queryTokenizer: Bloodhound.tokenizers.whitespace,
+			  // `states` is an array of state names defined in "The Basics"
+			  local: titles_light
+			});
+
+			$('#bloodhound .typeahead').typeahead({
+			  hint: true,
+			  highlight: true,
+			  minLength: 1
+			},
+			{
+			  name: 'titles',
+			  source: titles_b
+			});
+
+
+			$('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+			  console.log('Selection: ' + getID(suggestion) );
+			});
+
+			function getID(titre) {
+				for (i=0; i<titles.length; i++) {
+					if (titles[i].title == titre) {
+						return titles[i].id
+					}
+				}
+				return 0;
+			}
+
+			/***
+			* affichage des teasers articles
+			*/
 
 			var cinq_articles;
 			var articles_displayed=0;
@@ -50,7 +103,6 @@
 					setTimeout( function() {recursive_display(index, max, G);}, 100 );
 				}
 				else {
-					// append the inview element
 					delete G;
 					articles_displayed+=5;
 					
@@ -67,6 +119,11 @@
 					var G = new Gestionnaire_articles();
 					var articles = G.get_all(data);
 
+					if (articles.length == 0) {
+						$("#trigger").remove();
+						return false;
+					} 
+
 					G.tronque_content(articles, 'content', 150);
 
 
@@ -82,11 +139,15 @@
 			// lancement initial de fetch_json
 			fetch_json()
 			
-			/*** inview ***/
+
+
+
+			/*
+			** inview **
+			*/
 			$('#trigger').on('inview', function(event, isInView) {
 				  if (isInView) {
 				    // element is now visible in the viewport
-				    console.log("vue");
 				    fetch_json();
 
 				  } else {

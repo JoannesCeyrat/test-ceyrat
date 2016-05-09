@@ -18,32 +18,7 @@ class JsonsModel extends \W\Model\Model
 	}
 
 
-	/*
-	* @param void
-	* @return array of all $row de la table articles
-	*/
-	public  function get_all()
-	{
-		$this->setTable("articles");
-
-		$data = $this->findAll();
-
-		return $data;
-	}
-
-
-	/*
-	* @param index from of LIMIT
-	* @return array of all $row de la table articles
-	*/
-	public  function get_five($from)
-	{
-		$this->setTable("articles");
-
-		$data = $this->findAll("id", "ASC", intval(5), intval($from));
-
-		return $data;
-	}
+	
 
 
 }

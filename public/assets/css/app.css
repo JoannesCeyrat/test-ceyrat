@@ -81,10 +81,15 @@ body {
 	z-index: 99; 
 	background-color: #ffffff; 
 	box-shadow: 0 0 5px #ccc; 
-	max-width: 1170px
+	max-width: 1170px;
+	padding-bottom: 1rem;
 }
 
 .trig {
 	min-height: 2rem;
 	display: inline-block;
+}
+
+.noir {
+	color:#444;
 }

@@ -26,23 +26,23 @@
 
 
 	<!-- row articles -->
-	<div class="container bgBlanc">
+	<section class="container bgBlanc">
 			<div class="row">
 				<div class="col-xs-12"><h1>Nos derniers articles</h1></div>
 			</div>
 			<div class="row" id="articles">
 
 			</div>
-	</div>
+	</section>
 
 	<!-- row page 2 de l'exo -->
-	<div class="container ">
+	<footer class="container ">
 			<div class="row">
 				<div class="col-xs-12">
 					<p class="float-droit margeTop"><a href="../page2" title="Aller à la page 2 du test" >Page 2 du test >> </a></p>
 				</div>
 			</div>
-	</div>
+	</footer>
 
 
 		<script type="text/javascript">

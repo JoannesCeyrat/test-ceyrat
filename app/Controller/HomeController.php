@@ -4,6 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use Model\JsonsModel;
+use Model\ArticlesModel;
 
 class HomeController extends Controller
 {
@@ -43,7 +44,7 @@ class HomeController extends Controller
 	{
 		
 		//$json_arr = (new JsonsModel)->get_all();
-		$json_arr = (new JsonsModel)->get_five($from);
+		$json_arr = (new ArticlesModel)->get_five($from);
 
 
 		$this->showJson( $json_arr ); 
@@ -69,6 +70,10 @@ class HomeController extends Controller
 
 	public function page2()
 	{
-		$this->show('comint/page2', ['title' => 'Page 2 de Joannes CEYRAT', "tab_img_slider"=>false]);
+		$arr_json = (new ArticlesModel)->get_titles();
+		$this->show('comint/page2', ['title' => 'Page 2 de Joannes CEYRAT',  "arr_json"=>$arr_json, "page2"=>true]);
 	}
+
+
+
 }

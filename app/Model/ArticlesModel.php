@@ -40,4 +40,49 @@ class ArticlesModel extends \W\Model\Model
 		return $tab_r;
 	}
 
+	/*
+	* @param void
+	* @return array of all $row de la table articles
+	*/
+	public  function get_all()
+	{
+		$this->setTable("articles");
+
+		$data = $this->findAll();
+
+		return $data;
+	}
+
+
+	/*
+	* @param index from of LIMIT
+	* @return array of all $row de la table articles
+	*/
+	public  function get_five($from)
+	{
+		$this->setTable("articles");
+
+		$data = $this->findAll("id", "ASC", intval(5), intval($from));
+
+		return $data;
+	}
+
+
+	/*
+	* 
+	* @return string of json of all id : titles de la table articles
+	*/
+	public  function get_titles()
+	{
+		$data = $this->get_all();
+		$str_json_titles="[";
+		foreach ($data as $row) {
+			//array_push($arr_titles, ["id"=>$row["id"], "name"=>$row["title"]]);
+			$str_json_titles.="{id:".$row["id"].", title:\"".$row["title"]."\"},";
+		}
+		$str_json_titles=substr($str_json_titles, 0, -1);
+		$str_json_titles.="]";
+		return $str_json_titles;
+	}
+
 }

@@ -1,4 +1,4 @@
-<?php $this->layout('comint/layout', ['title' => $title, 'slider'=>false]) ?>
+<?php $this->layout('comint/layout', ['title' => $title]) ?>
 
 
 <?php $this->start('main_content') ?>
