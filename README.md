@@ -19,5 +19,5 @@ Contient les scripts et le ficher css.
 Je n'ai pas minifié les fichiers pour lecture.
 Je n'ai pas mis de favicon, voir http://www.joannes-ceyrat.com/ pour exemple. 
 
-EN ACTION : lancer la home à la racine / puis cliquer sur le lien "voir tous les articles". Il vous sera proposé d'utiliser le back et d'importé le fichier articles.json.
+EN ACTION : lancer la home à la racine / puis cliquer sur le lien "voir tous les articles". Il vous sera proposé d'utiliser le back et d'importer le fichier articles.json.
 
