@@ -116,7 +116,7 @@
 				}
 				else {
 					delete G;
-					articles_displayed+=5;
+					
 					
 				}
 			}
@@ -143,6 +143,8 @@
 						G.add_to_element("articles", articles[i]);
 					}
 
+					articles_displayed+=5;
+					
 					recursive_display(0, 5, G);
 				
 				});

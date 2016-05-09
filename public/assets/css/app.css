@@ -81,7 +81,7 @@ body {
 	z-index: 99; 
 	background-color: #ffffff; 
 	box-shadow: 0 0 5px #ccc; 
-	max-width: 1170px;
+	max-width: 970px;
 	padding-bottom: 1rem;
 }
 
@@ -109,3 +109,25 @@ footer {
 	padding: 0 1rem 3rem 1rem;
 	color:#f49103;
 }
+
+
+/* media query pour le header fixe */
+
+/* Small devices (tablets, 768px and up) */
+@media all and (max-width:768px) { 
+	.fixe {
+		max-width: 768px;
+	}
+}
+
+@media all and (min-width:769px) and (max-width: 992px) {
+	.fixe {
+		max-width: 750px;
+	}
+ }
+
+@media all and (min-width: 1170px) { 
+.fixe {
+		max-width: 1170px;
+	}}
+
