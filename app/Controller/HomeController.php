@@ -53,10 +53,9 @@ class HomeController extends Controller
 
 
 	/*
-	* methode appelée pour afficher les vues
+	* methodes appelées pour afficher les vues
 	* 
-	* @param  void
-    * @return affichage des vues
+	* 
 	*/
 	public function home()
 	{
